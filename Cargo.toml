@@ -1,0 +1,31 @@
+[package]
+name = "rust_proto_example"
+version = "0.1.0"
+edition = "2021"
+
+# Important to group the modules together
+[workspace]
+
+members = [
+    "proto_generator",
+    "example_bin_consumer",
+    # Example library consuming the protobug generated code.
+    # Other parts of your crate can use this library to indirectly use them.
+    "example_lib_consumer"
+]
+
+[dependencies]
+protobuf = "3.2.0"
+protobuf-json-mapping = "3.2.0"
+thiserror = "1.0.47"
+
+# from outside repo's use this
+# proto_generator = { git = "ssh://git@github.com:MatthewRizzo/Rust_Proto_Example.git", branch = "main" }
+proto_generator = { path = "proto_generator" }
+
+[build-dependencies]
+protobuf-codegen = "3"
+
+[[bin]]
+path = "example_bin_consumer/src/main.rs"
+name = "example"

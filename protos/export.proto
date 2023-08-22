@@ -1,0 +1,6 @@
+syntax = "proto2";
+
+message GenericRequest {
+    optional string header = 1;
+    optional string body = 2;
+}
